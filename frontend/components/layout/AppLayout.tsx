@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Suspense,
   useEffect,
   useState,
   type ReactNode,
@@ -122,16 +123,22 @@ export default function AppLayout({
         dark:text-slate-100
       "
     >
-      {/* Sidebar */}
+      {/* =====================================
+          SIDEBAR
+      ===================================== */}
 
-      <Sidebar
-        collapsed={sidebarCollapsed}
-        mobileOpen={mobileOpen}
-        onToggleCollapse={toggleSidebar}
-        onCloseMobile={closeMobileSidebar}
-      />
+      <Suspense fallback={null}>
+        <Sidebar
+          collapsed={sidebarCollapsed}
+          mobileOpen={mobileOpen}
+          onToggleCollapse={toggleSidebar}
+          onCloseMobile={closeMobileSidebar}
+        />
+      </Suspense>
 
-      {/* Main workspace */}
+      {/* =====================================
+          MAIN WORKSPACE
+      ===================================== */}
 
       <div
         className={`
@@ -147,14 +154,20 @@ export default function AppLayout({
           }
         `}
       >
-        {/* Header */}
+        {/* =====================================
+            HEADER
+        ===================================== */}
 
-        <Header
-          mobileOpen={mobileOpen}
-          onOpenMobile={openMobileSidebar}
-        />
+        <Suspense fallback={null}>
+          <Header
+            mobileOpen={mobileOpen}
+            onOpenMobile={openMobileSidebar}
+          />
+        </Suspense>
 
-        {/* Page content */}
+        {/* =====================================
+            PAGE CONTENT
+        ===================================== */}
 
         <main
           id="main-content"
@@ -170,7 +183,9 @@ export default function AppLayout({
           </div>
         </main>
 
-        {/* Footer */}
+        {/* =====================================
+            FOOTER
+        ===================================== */}
 
         <footer
           className="
